@@ -1,0 +1,17 @@
+{
+  "name": "ng-bootstrap-components",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap": "^5.1.0",
+    "bootstrap-icons": "^1.5.0",
+    "csstype": "^3.0.8"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "tags": [
+    "bootstrap 5 angular",
+    "ng bootstrap",
+    "angular grid system"
+  ]
+}

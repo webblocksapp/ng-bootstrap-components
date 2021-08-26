@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <header>
+      <a routerLink="/grid">Grid</a>
+    </header>
+    <router-outlet></router-outlet>
+  `,
 })
-export class AppComponent {
-  title = 'bootstrap-components-lib';
-}
+export class AppComponent {}
