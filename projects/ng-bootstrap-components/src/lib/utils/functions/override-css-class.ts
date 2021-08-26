@@ -1,4 +1,5 @@
 import { ElementRef } from '@angular/core';
+import { isEmpty } from './is-empty';
 
 export const overrideCssClass = (
   hostElRef: ElementRef,
@@ -14,7 +15,7 @@ export const overrideCssClass = (
 
   element.classList.remove(foundClass);
 
-  if (cssClassToApply) {
+  if (!isEmpty(cssClassToApply)) {
     element.classList.add(cssClassToApply);
   }
 };

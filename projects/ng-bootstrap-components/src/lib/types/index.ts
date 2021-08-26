@@ -3,3 +3,4 @@ export * from './gutters-size';
 export * from './margin-size';
 export * from './padding-size';
 export * from './typography-component';
+export * from './typography-variant';

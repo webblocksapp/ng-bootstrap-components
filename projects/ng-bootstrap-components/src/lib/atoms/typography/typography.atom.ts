@@ -5,13 +5,18 @@ import {
   Input,
   SimpleChanges,
 } from '@angular/core';
-import { MarginSize, TypographyComponent } from '../../types';
 import {
-  overrideCssClass,
-  setTypographyClass,
-  isEmpty,
-} from '../../utils/functions';
+  MarginSize,
+  TypographyComponent,
+  TypographyVariants,
+} from '../../types';
+import { overrideCssClass, isEmpty, setDisplay } from '../../utils/functions';
 import * as CSS from 'csstype';
+import {
+  DISPLAY_BLOCK_COMPONENTS,
+  TYPOGRAPHY_CLASSES,
+  TYPOGRAPHY_VARIANTS,
+} from '../../constants';
 
 @Component({
   selector: 'typography',
@@ -27,6 +32,10 @@ export class TypographyAtom {
   @Input() gutterBottom: boolean = false;
   @Input() mb: MarginSize;
   @Input() marginBottom: MarginSize;
+  @Input() variant: TypographyVariants;
+
+  private prevTypographyCSSClass: string;
+  private prevVariantCSSClass: string;
 
   constructor(private elRef: ElementRef) {}
 
@@ -37,16 +46,54 @@ export class TypographyAtom {
         this.setGutterBottom();
       }
 
-      if (propName === 'display' && isEmpty(this.display)) this.setTypography();
-      if (propName === 'gutterBottom') this.setGutterBottom();
+      if (propName === 'display' && isEmpty(this.display)) {
+        this.setTypography();
+      }
+
+      if (propName === 'gutterBottom') {
+        this.setGutterBottom();
+      }
+
       if (propName === 'mb' || propName === 'marginBottom') {
         this.setGutterBottom();
+      }
+
+      if (propName === 'variant') {
+        this.setVariant();
       }
     }
   }
 
   private setTypography() {
-    setTypographyClass(this.elRef, this.component, this.display);
+    const component = this.component || 'p';
+    const className = TYPOGRAPHY_CLASSES[component];
+    const isDisplayBlock = DISPLAY_BLOCK_COMPONENTS.includes(component);
+
+    if (isDisplayBlock && isEmpty(this.display)) {
+      setDisplay(this.elRef, 'block');
+    } else {
+      setDisplay(this.elRef, this.display || 'inline');
+    }
+
+    overrideCssClass(
+      this.elRef,
+      new RegExp(`^${this.prevTypographyCSSClass}`),
+      className
+    );
+
+    this.prevTypographyCSSClass = className;
+  }
+
+  private setVariant() {
+    const className = TYPOGRAPHY_VARIANTS[this.variant];
+
+    overrideCssClass(
+      this.elRef,
+      new RegExp(`^${this.prevVariantCSSClass}`),
+      className
+    );
+
+    this.prevVariantCSSClass = className;
   }
 
   private setGutterBottom() {
@@ -60,7 +107,7 @@ export class TypographyAtom {
     }
   }
 
-  private generateMb() {
+  private generateMb(): string | number {
     let mb = this.mb || this.marginBottom;
     mb = this.component === 'p' && isEmpty(mb) ? 1 : mb;
     return mb;

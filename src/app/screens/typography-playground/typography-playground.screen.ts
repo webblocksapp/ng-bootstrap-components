@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {
-  MarginSize,
   TypographyComponent,
   TYPOGRAPHY_CLASSES,
+  TYPOGRAPHY_VARIANTS,
 } from '@webblocksapp/ng-bootstrap-components';
 import * as CSS from 'csstype';
 
@@ -17,6 +17,7 @@ import * as CSS from 'csstype';
             [component]="component"
             [mb]="marginBottom"
             [gutterBottom]="gutterBottom"
+            [variant]="variant"
           >
             Hello world
           </typography>
@@ -37,6 +38,14 @@ import * as CSS from 'csstype';
           <select [(ngModel)]="display">
             <option *ngFor="let display of displays" [value]="display">
               {{ display }}
+            </option>
+          </select>
+        </box>
+        <box [md]="3">
+          <label [pr]="2">Variant</label>
+          <select [(ngModel)]="variant">
+            <option *ngFor="let variant of variants" [value]="variant">
+              {{ variant }}
             </option>
           </select>
         </box>
@@ -64,9 +73,11 @@ export class TypographyPlaygroundScreen {
     'inline-block',
     'flex',
   ];
+  variants: string[] = ['', ...Object.keys(TYPOGRAPHY_VARIANTS)];
 
   component: TypographyComponent = 'h1';
   display: CSS.Properties['display'] = 'block';
+  variant: any = '';
   marginBottom: any = '';
   gutterBottom: any = 'true';
 }
