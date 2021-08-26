@@ -6,7 +6,7 @@ import {
 } from '@webblocksapp/ng-bootstrap-components';
 
 @Component({
-  selector: 'grid',
+  selector: 'grid-playground',
   template: `
     <box containerMd>
       <box row [spacing]="spacing">
@@ -43,7 +43,7 @@ import {
   `,
   styles: [``],
 })
-export class GridScreen {
+export class GridPlaygroundScreen {
   public sm: ColSize = 12;
   public md: ColSize = 4;
   public spacing: GuttersSize = 0;

@@ -11,6 +11,7 @@ import { PaddingDirective } from './directives/padding.directive';
 import { RowDirective } from './directives/row.directive';
 import { SpacingDirective } from './directives/spacing.directive';
 import { CardAtom } from './atoms/card/card.atom';
+import { TypographyAtom } from './atoms/typography/typography.atom';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CardAtom } from './atoms/card/card.atom';
     MarginDirective,
     PaddingDirective,
     CardAtom,
+    TypographyAtom,
   ],
   imports: [CommonModule],
   exports: [
@@ -39,6 +41,7 @@ import { CardAtom } from './atoms/card/card.atom';
     MarginDirective,
     PaddingDirective,
     CardAtom,
+    TypographyAtom,
   ],
 })
 export class NgBootstrapComponentsModule {}

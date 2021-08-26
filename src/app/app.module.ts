@@ -6,10 +6,21 @@ import { RouterModule } from '@angular/router';
 import { NgBootstrapComponentsModule } from '@webblocksapp/ng-bootstrap-components';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GridScreen } from './screens/grid/grid.screen';
+import { GridNestedScreen } from './screens/grid-nested/grid-nested.screen';
+import { GridPlaygroundScreen } from './screens/grid-playground/grid-playground.screen';
+import { GridMainScreen } from './screens/grid-main/grid-main.screen';
+import { TypographyMainScreen } from './screens/typography-main/typography-main.screen';
+import { TypographyOverviewScreen } from './screens/typography-overview/typography-overview.screen';
 
 @NgModule({
-  declarations: [AppComponent, GridScreen],
+  declarations: [
+    AppComponent,
+    GridMainScreen,
+    GridPlaygroundScreen,
+    GridNestedScreen,
+    TypographyMainScreen,
+    TypographyOverviewScreen,
+  ],
   imports: [
     BrowserModule,
     CommonModule,
