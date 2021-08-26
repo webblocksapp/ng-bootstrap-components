@@ -11,6 +11,7 @@ import { GridPlaygroundScreen } from './screens/grid-playground/grid-playground.
 import { GridMainScreen } from './screens/grid-main/grid-main.screen';
 import { TypographyMainScreen } from './screens/typography-main/typography-main.screen';
 import { TypographyOverviewScreen } from './screens/typography-overview/typography-overview.screen';
+import { TypographyPlaygroundScreen } from './screens/typography-playground/typography-playground.screen';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TypographyOverviewScreen } from './screens/typography-overview/typograp
     GridNestedScreen,
     TypographyMainScreen,
     TypographyOverviewScreen,
+    TypographyPlaygroundScreen,
   ],
   imports: [
     BrowserModule,

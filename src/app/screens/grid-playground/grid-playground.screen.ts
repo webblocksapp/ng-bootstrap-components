@@ -44,12 +44,12 @@ import {
   styles: [``],
 })
 export class GridPlaygroundScreen {
-  public sm: ColSize = 12;
-  public md: ColSize = 4;
-  public spacing: GuttersSize = 0;
-  public cardPadding: PaddingSize = 0;
+  sm: ColSize = 12;
+  md: ColSize = 4;
+  spacing: GuttersSize = 0;
+  cardPadding: PaddingSize = 0;
 
-  public items: string[] = [
+  items: string[] = [
     'Item 1',
     'Item 2',
     'Item 3',

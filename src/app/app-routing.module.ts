@@ -5,6 +5,7 @@ import { GridPlaygroundScreen } from './screens/grid-playground/grid-playground.
 import { GridMainScreen } from './screens/grid-main/grid-main.screen';
 import { TypographyMainScreen } from './screens/typography-main/typography-main.screen';
 import { TypographyOverviewScreen } from './screens/typography-overview/typography-overview.screen';
+import { TypographyPlaygroundScreen } from './screens/typography-playground/typography-playground.screen';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     children: [
       { path: '', component: TypographyOverviewScreen },
       { path: 'overview', component: TypographyOverviewScreen },
+      { path: 'playground', component: TypographyPlaygroundScreen },
     ],
   },
   { path: '**', redirectTo: '/grid' },

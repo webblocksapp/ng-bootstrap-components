@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import { MarginSize } from '../types/margin-size';
-import { overrideCssClass } from '../utils/functions';
+import { overrideCssClass, isEmpty } from '../utils/functions';
 
 @Directive({
   selector: `
@@ -92,7 +92,8 @@ export class MarginDirective {
   }
 
   private setMarginClass(prefix: string, value: MarginSize) {
-    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), `${prefix}${value}`);
+    const className = !isEmpty(value) ? `${prefix}${value}` : '';
+    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), className);
   }
 
   constructor(private elRef: ElementRef) {}

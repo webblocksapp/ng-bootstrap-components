@@ -13,5 +13,8 @@ export const overrideCssClass = (
   );
 
   element.classList.remove(foundClass);
-  element.classList.add(cssClassToApply);
+
+  if (cssClassToApply) {
+    element.classList.add(cssClassToApply);
+  }
 };

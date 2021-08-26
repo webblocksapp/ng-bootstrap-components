@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import * as CSS from 'csstype';
-import { overrideCssClass } from '../utils/functions';
+import { setDisplay } from '../utils/functions';
 
 @Directive({
   selector: '[display]',
@@ -12,7 +12,7 @@ export class DisplayDirective {
   }
 
   private setDisplay(display: CSS.Properties['display']) {
-    overrideCssClass(this.elRef, new RegExp(/^d-/), `d-${display}`);
+    setDisplay(this.elRef, display);
   }
 
   constructor(private elRef: ElementRef) {}

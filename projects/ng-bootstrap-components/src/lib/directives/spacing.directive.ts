@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import { GuttersSize } from '../types/gutters-size';
-import { overrideCssClass } from '../utils/functions';
+import { overrideCssClass, isEmpty } from '../utils/functions';
 
 @Directive({
   selector: `
@@ -28,6 +28,7 @@ export class SpacingDirective {
   constructor(private elRef: ElementRef) {}
 
   private setSpacingClass(prefix: string, value: GuttersSize) {
-    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), `${prefix}${value}`);
+    const className = !isEmpty(value) ? `${prefix}${value}` : '';
+    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), className);
   }
 }

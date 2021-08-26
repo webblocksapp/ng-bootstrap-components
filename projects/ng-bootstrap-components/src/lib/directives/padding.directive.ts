@@ -1,6 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 import { PaddingSize } from '../types/padding-size';
-import { overrideCssClass } from '../utils/functions';
+import { overrideCssClass, isEmpty } from '../utils/functions';
 
 @Directive({
   selector: `
@@ -92,7 +92,8 @@ export class PaddingDirective {
   }
 
   private setPaddingClass(prefix: string, value: PaddingSize) {
-    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), `${prefix}${value}`);
+    const className = !isEmpty(value) ? `${prefix}${value}` : '';
+    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), className);
   }
 
   constructor(private elRef: ElementRef) {}

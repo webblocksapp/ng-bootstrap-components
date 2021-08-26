@@ -1,6 +1,6 @@
 import { AfterContentInit, Directive, ElementRef, Input } from '@angular/core';
 import { ColSize } from '../types';
-import { overrideCssClass } from '../utils/functions';
+import { overrideCssClass, isEmpty } from '../utils/functions';
 
 @Directive({
   selector: `    
@@ -38,10 +38,6 @@ export class ColDirective implements AfterContentInit {
     this.setColClass('col-xxl-', value);
   }
 
-  private setColClass(prefix: string, value: ColSize) {
-    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), `${prefix}${value}`);
-  }
-
   constructor(private elRef: ElementRef) {}
 
   ngAfterContentInit(): void {
@@ -54,5 +50,10 @@ export class ColDirective implements AfterContentInit {
     if (!foundColumnClass) {
       elementClassList.add('col');
     }
+  }
+
+  private setColClass(prefix: string, value: ColSize) {
+    const className = !isEmpty(value) ? `${prefix}${value}` : '';
+    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), className);
   }
 }
