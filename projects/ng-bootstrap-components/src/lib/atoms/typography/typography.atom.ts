@@ -7,15 +7,22 @@ import {
 } from '@angular/core';
 import {
   MarginSize,
+  TextAlign,
   TypographyComponent,
   TypographyVariants,
 } from '../../types';
-import { overrideCssClass, isEmpty, setDisplay } from '../../utils/functions';
+import {
+  overrideCssClass,
+  isEmpty,
+  setDisplay,
+  buildStartsWithRegex,
+} from '../../utils/functions';
 import * as CSS from 'csstype';
 import {
   DISPLAY_BLOCK_COMPONENTS,
-  TYPOGRAPHY_CLASSES,
-  TYPOGRAPHY_VARIANTS,
+  TYPOGRAPHY_COMPONENT_CLASSES,
+  TYPOGRAPHY_VARIANT_CLASSES,
+  TYPOGRAPHY_ALIGN_CLASSES,
 } from '../../constants';
 
 @Component({
@@ -33,9 +40,11 @@ export class TypographyAtom {
   @Input() mb: MarginSize;
   @Input() marginBottom: MarginSize;
   @Input() variant: TypographyVariants;
+  @Input() align: TextAlign;
 
   private prevTypographyCSSClass: string;
   private prevVariantCSSClass: string;
+  private prevTextAlignCSSClass: string;
 
   constructor(private elRef: ElementRef) {}
 
@@ -61,12 +70,16 @@ export class TypographyAtom {
       if (propName === 'variant') {
         this.setVariant();
       }
+
+      if (propName === 'align') {
+        this.setTextAlign();
+      }
     }
   }
 
-  private setTypography() {
+  private setTypography(): void {
     const component = this.component || 'p';
-    const className = TYPOGRAPHY_CLASSES[component];
+    const className = TYPOGRAPHY_COMPONENT_CLASSES[component];
     const isDisplayBlock = DISPLAY_BLOCK_COMPONENTS.includes(component);
 
     if (isDisplayBlock && isEmpty(this.display)) {
@@ -77,37 +90,51 @@ export class TypographyAtom {
 
     overrideCssClass(
       this.elRef,
-      new RegExp(`^${this.prevTypographyCSSClass}`),
+      buildStartsWithRegex(this.prevTypographyCSSClass),
       className
     );
 
     this.prevTypographyCSSClass = className;
   }
 
-  private setVariant() {
-    const className = TYPOGRAPHY_VARIANTS[this.variant];
+  private setVariant(): void {
+    const className = this.variant
+      ? TYPOGRAPHY_VARIANT_CLASSES[this.variant]
+      : '';
 
     overrideCssClass(
       this.elRef,
-      new RegExp(`^${this.prevVariantCSSClass}`),
+      buildStartsWithRegex(this.prevVariantCSSClass),
       className
     );
 
     this.prevVariantCSSClass = className;
   }
 
-  private setGutterBottom() {
+  private setGutterBottom(): void {
     const mb = this.generateMb();
-    const mbClass = mb >= 0 ? `mb-${mb}` : '';
+    const mbClass = !isEmpty(mb) && mb >= 0 ? `mb-${mb}` : '';
 
     if (!this.gutterBottom) {
-      overrideCssClass(this.elRef, new RegExp(/^mb-/), 'mb-0');
+      overrideCssClass(this.elRef, buildStartsWithRegex('mb-'), 'mb-0');
     } else if (this.gutterBottom) {
-      overrideCssClass(this.elRef, new RegExp(/^mb-/), mbClass);
+      overrideCssClass(this.elRef, buildStartsWithRegex('mb-'), mbClass);
     }
   }
 
-  private generateMb(): string | number {
+  private setTextAlign(): void {
+    const className = this.align ? TYPOGRAPHY_ALIGN_CLASSES[this.align] : '';
+
+    overrideCssClass(
+      this.elRef,
+      buildStartsWithRegex(this.prevTextAlignCSSClass),
+      className
+    );
+
+    this.prevTextAlignCSSClass = className;
+  }
+
+  private generateMb(): any {
     let mb = this.mb || this.marginBottom;
     mb = this.component === 'p' && isEmpty(mb) ? 1 : mb;
     return mb;

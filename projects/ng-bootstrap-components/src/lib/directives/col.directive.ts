@@ -1,6 +1,10 @@
 import { AfterContentInit, Directive, ElementRef, Input } from '@angular/core';
 import { ColSize } from '../types';
-import { overrideCssClass, isEmpty } from '../utils/functions';
+import {
+  overrideCssClass,
+  isEmpty,
+  buildStartsWithRegex,
+} from '../utils/functions';
 
 @Directive({
   selector: `    
@@ -54,6 +58,6 @@ export class ColDirective implements AfterContentInit {
 
   private setColClass(prefix: string, value: ColSize) {
     const className = !isEmpty(value) ? `${prefix}${value}` : '';
-    overrideCssClass(this.elRef, new RegExp(`^${prefix}`), className);
+    overrideCssClass(this.elRef, buildStartsWithRegex(prefix), className);
   }
 }

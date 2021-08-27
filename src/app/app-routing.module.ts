@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GridNestedScreen } from './screens/grid-nested/grid-nested.screen';
-import { GridPlaygroundScreen } from './screens/grid-playground/grid-playground.screen';
-import { GridMainScreen } from './screens/grid-main/grid-main.screen';
-import { TypographyMainScreen } from './screens/typography-main/typography-main.screen';
-import { TypographyOverviewScreen } from './screens/typography-overview/typography-overview.screen';
-import { TypographyPlaygroundScreen } from './screens/typography-playground/typography-playground.screen';
+import { GridNestedScreen } from './screens/grid-nested.screen';
+import { GridPlaygroundScreen } from './screens/grid-playground.screen';
+import { GridMainScreen } from './screens/grid-main.screen';
+import { TypographyMainScreen } from './screens/typography-main.screen';
+import { TypographyOverviewScreen } from './screens/typography-overview.screen';
+import { TypographyPlaygroundScreen } from './screens/typography-playground.screen';
 
 const routes: Routes = [
   {

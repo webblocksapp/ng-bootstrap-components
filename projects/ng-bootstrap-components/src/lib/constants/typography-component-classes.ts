@@ -1,4 +1,4 @@
-export const TYPOGRAPHY_CLASSES = {
+export const TYPOGRAPHY_COMPONENT_CLASSES = {
   h1: 'h1',
   h2: 'h2',
   h3: 'h3',

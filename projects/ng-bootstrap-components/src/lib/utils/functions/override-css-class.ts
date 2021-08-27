@@ -13,7 +13,9 @@ export const overrideCssClass = (
     className.match(cssClassRegexToRemove)
   );
 
-  element.classList.remove(foundClass);
+  if (!isEmpty(foundClass)) {
+    element.classList.remove(foundClass);
+  }
 
   if (!isEmpty(cssClassToApply)) {
     element.classList.add(cssClassToApply);

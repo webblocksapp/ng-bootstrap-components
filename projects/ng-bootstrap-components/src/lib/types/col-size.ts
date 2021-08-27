@@ -22,4 +22,7 @@ export type ColSize =
   | '9'
   | '10'
   | '11'
-  | '12';
+  | '12'
+  | null
+  | ''
+  | undefined;

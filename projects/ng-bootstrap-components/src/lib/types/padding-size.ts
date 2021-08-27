@@ -10,4 +10,7 @@ export type PaddingSize =
   | '2'
   | '3'
   | '4'
-  | '5';
+  | '5'
+  | null
+  | ''
+  | undefined;

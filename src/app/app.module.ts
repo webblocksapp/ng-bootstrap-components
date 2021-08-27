@@ -6,12 +6,17 @@ import { RouterModule } from '@angular/router';
 import { NgBootstrapComponentsModule } from '@webblocksapp/ng-bootstrap-components';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GridNestedScreen } from './screens/grid-nested/grid-nested.screen';
-import { GridPlaygroundScreen } from './screens/grid-playground/grid-playground.screen';
-import { GridMainScreen } from './screens/grid-main/grid-main.screen';
-import { TypographyMainScreen } from './screens/typography-main/typography-main.screen';
-import { TypographyOverviewScreen } from './screens/typography-overview/typography-overview.screen';
-import { TypographyPlaygroundScreen } from './screens/typography-playground/typography-playground.screen';
+import { TypographyPlaygroundFormOrganism } from './organisms/typography-playground-form.organism';
+import { TypographyPlaygroundPreviewOrganism } from './organisms/typography-playground-preview.organism';
+import { TypographyRepository } from './repositories';
+import {
+  GridNestedScreen,
+  GridPlaygroundScreen,
+  GridMainScreen,
+  TypographyMainScreen,
+  TypographyOverviewScreen,
+  TypographyPlaygroundScreen,
+} from './screens';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,8 @@ import { TypographyPlaygroundScreen } from './screens/typography-playground/typo
     TypographyMainScreen,
     TypographyOverviewScreen,
     TypographyPlaygroundScreen,
+    TypographyPlaygroundFormOrganism,
+    TypographyPlaygroundPreviewOrganism,
   ],
   imports: [
     BrowserModule,
@@ -32,5 +39,6 @@ import { TypographyPlaygroundScreen } from './screens/typography-playground/typo
     FormsModule,
   ],
   bootstrap: [AppComponent],
+  providers: [TypographyRepository],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-export const TYPOGRAPHY_VARIANTS = {
+export const TYPOGRAPHY_VARIANT_CLASSES = {
   display1: 'display-1',
   display2: 'display-2',
   display3: 'display-3',
@@ -6,4 +6,5 @@ export const TYPOGRAPHY_VARIANTS = {
   display5: 'display-5',
   display6: 'display-6',
   lead: 'lead',
+  muted: 'text-muted',
 };
