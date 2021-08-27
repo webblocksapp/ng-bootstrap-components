@@ -8,5 +8,6 @@ export class ContainerFluidDirective {
     const elementClassList = el.nativeElement.classList;
     elementClassList.add('container-fluid');
     elementClassList.add('d-block');
+    elementClassList.add('px-0');
   }
 }

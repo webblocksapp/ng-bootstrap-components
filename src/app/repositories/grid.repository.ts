@@ -1,37 +1,35 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { TypographyPlayground } from '../interfaces';
+import { GridPlayground } from '../interfaces';
 
-interface TypographyRepositoryState {
-  playgroundModel: TypographyPlayground;
+interface GridRepositoryState {
+  playgroundModel: any;
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class TypographyRepository {
+export class GridRepository {
   private stateSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
   private state$: Subscription;
-  private state: TypographyRepositoryState = {
+  private state: GridRepositoryState = {
     playgroundModel: {
-      component: 'h1',
-      display: 'block',
-      variant: '',
-      marginBottom: '',
-      gutterBottom: 'yes',
-      align: '',
+      sm: 12,
+      md: 4,
+      spacing: 0,
+      cardPadding: 0,
     },
   };
 
-  subscribe(callback: (state: TypographyRepositoryState) => void): void {
+  subscribe(callback: (state: GridRepositoryState) => void): void {
     this.state$ = this.stateSubject.subscribe(() => {
       callback(this.state);
     });
   }
 
-  updatePlaygroundModelState(model: TypographyPlayground): void {
+  updatePlaygroundModelState(model: GridPlayground): void {
     this.state.playgroundModel = { ...model, ...this.state.playgroundModel };
     this.emitChange();
   }

@@ -6,9 +6,18 @@ import { RouterModule } from '@angular/router';
 import { NgBootstrapComponentsModule } from '@webblocksapp/ng-bootstrap-components';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TypographyPlaygroundFormOrganism } from './organisms/typography-playground-form.organism';
-import { TypographyPlaygroundPreviewOrganism } from './organisms/typography-playground-preview.organism';
-import { TypographyRepository } from './repositories';
+import {
+  GridMainRoutesOrganism,
+  GridPlaygroundFormOrganism,
+  GridNestedPreviewOrganism,
+  TypographyPlaygroundFormOrganism,
+  TypographyPlaygroundPreviewOrganism,
+  GridPlaygroundPreviewOrganism,
+  TypographyMainRoutesOrganism,
+  TypographyOverviewDemoOrganism,
+  AppHeaderOrganism,
+} from './organisms';
+import { TypographyRepository, GridRepository } from './repositories';
 import {
   GridNestedScreen,
   GridPlaygroundScreen,
@@ -21,14 +30,21 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
+    AppHeaderOrganism,
     GridMainScreen,
+    GridMainRoutesOrganism,
     GridPlaygroundScreen,
+    GridPlaygroundFormOrganism,
+    GridPlaygroundPreviewOrganism,
+    GridNestedPreviewOrganism,
     GridNestedScreen,
     TypographyMainScreen,
     TypographyOverviewScreen,
     TypographyPlaygroundScreen,
     TypographyPlaygroundFormOrganism,
     TypographyPlaygroundPreviewOrganism,
+    TypographyMainRoutesOrganism,
+    TypographyOverviewDemoOrganism,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +55,6 @@ import {
     FormsModule,
   ],
   bootstrap: [AppComponent],
-  providers: [TypographyRepository],
+  providers: [TypographyRepository, GridRepository],
 })
 export class AppModule {}

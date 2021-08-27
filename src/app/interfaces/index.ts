@@ -1,1 +1,2 @@
-export * from './typography-playground-form';
+export * from './grid-playground';
+export * from './typography-playground';

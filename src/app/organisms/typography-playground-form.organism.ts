@@ -1,11 +1,18 @@
-import { Component, DoCheck, KeyValueDiffers, OnInit } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  KeyValueDiffer,
+  KeyValueDiffers,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   TYPOGRAPHY_ALIGN_CLASSES,
   TYPOGRAPHY_COMPONENT_CLASSES,
   TYPOGRAPHY_VARIANT_CLASSES,
 } from '@webblocksapp/ng-bootstrap-components';
 import * as CSS from 'csstype';
-import { TypographyPlaygroundModel } from '../interfaces';
+import { TypographyPlayground } from '../interfaces';
 import { TypographyRepository } from '../repositories';
 
 @Component({
@@ -50,11 +57,15 @@ import { TypographyRepository } from '../repositories';
           />
         </box>
         <box [md]="3">
-          <label [pr]="3">Gutter bottom</label>
-          <label [pr]="1">Yes</label>
-          <input type="radio" [(ngModel)]="model.gutterBottom" value="true" />
-          <label [pl]="1" [pr]="1">No</label>
-          <input type="radio" [(ngModel)]="model.gutterBottom" value="" />
+          <label [pr]="2">Gutter Bottom</label>
+          <select [(ngModel)]="model.gutterBottom">
+            <option
+              *ngFor="let option of gutterBottomOptions"
+              [value]="option.value"
+            >
+              {{ option.viewValue }}
+            </option>
+          </select>
         </box>
         <box [md]="3">
           <label [pr]="2">Align</label>
@@ -68,7 +79,9 @@ import { TypographyRepository } from '../repositories';
     </box>
   `,
 })
-export class TypographyPlaygroundFormOrganism implements OnInit, DoCheck {
+export class TypographyPlaygroundFormOrganism
+  implements OnInit, DoCheck, OnDestroy
+{
   typographies: string[] = Object.keys(TYPOGRAPHY_COMPONENT_CLASSES);
   displays: CSS.Properties['display'][] = [
     '',
@@ -79,9 +92,13 @@ export class TypographyPlaygroundFormOrganism implements OnInit, DoCheck {
   ];
   variants: string[] = ['', ...Object.keys(TYPOGRAPHY_VARIANT_CLASSES)];
   alignments: string[] = ['', ...Object.keys(TYPOGRAPHY_ALIGN_CLASSES)];
+  gutterBottomOptions: { [key: string]: string }[] = [
+    { value: 'yes', viewValue: 'Yes' },
+    { value: '', viewValue: 'No' },
+  ];
 
-  private modelDiffer: any;
-  model: TypographyPlaygroundModel;
+  private modelDiffer: KeyValueDiffer<any, any>;
+  model: TypographyPlayground;
 
   constructor(
     private differs: KeyValueDiffers,
@@ -102,5 +119,9 @@ export class TypographyPlaygroundFormOrganism implements OnInit, DoCheck {
     if (modelChanges) {
       this.typographyRepository.updatePlaygroundModelState(this.model);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.typographyRepository.unsubscribe();
   }
 }

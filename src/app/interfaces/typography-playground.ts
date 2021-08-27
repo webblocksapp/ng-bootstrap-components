@@ -6,11 +6,11 @@ import {
 } from '@webblocksapp/ng-bootstrap-components';
 import * as CSS from 'csstype';
 
-export interface TypographyPlaygroundModel {
+export interface TypographyPlayground {
   component: TypographyComponent;
   display: CSS.Properties['display'];
   variant: TypographyVariants;
   marginBottom: MarginSize;
-  gutterBottom: boolean;
+  gutterBottom: any;
   align: TextAlign;
 }

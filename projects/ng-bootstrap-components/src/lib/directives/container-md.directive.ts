@@ -8,5 +8,6 @@ export class ContainerMdDirective {
     const elementClassList = el.nativeElement.classList;
     elementClassList.add('container-md');
     elementClassList.add('d-block');
+    elementClassList.add('px-0');
   }
 }

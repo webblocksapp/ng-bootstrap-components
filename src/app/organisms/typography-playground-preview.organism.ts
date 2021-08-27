@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { TypographyPlaygroundModel } from '../interfaces';
+import { Component, OnDestroy } from '@angular/core';
+import { TypographyPlayground } from '../interfaces';
 import { TypographyRepository } from '../repositories';
 
 @Component({
@@ -21,12 +21,16 @@ import { TypographyRepository } from '../repositories';
     </box>
   `,
 })
-export class TypographyPlaygroundPreviewOrganism {
-  model: TypographyPlaygroundModel;
+export class TypographyPlaygroundPreviewOrganism implements OnDestroy {
+  model: TypographyPlayground;
 
   constructor(private typographyRepository: TypographyRepository) {
     this.typographyRepository.subscribe(({ playgroundModel }) => {
       this.model = playgroundModel;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.typographyRepository.unsubscribe();
   }
 }
